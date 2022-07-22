@@ -25,14 +25,12 @@ cd ProRF_server
 using Pkg
 Pkg.add(url="https://github.com/Chemical118/AverageShiftedHistograms.jl")
 Pkg.add(url="https://github.com/Chemical118/ProRF.jl")
-Pkg.add("Telegram")
 Pkg.add("JLD2")
 ```
 
 - 기본적인 workflow 구성
     + `make_seed.jl` : seed 생성 후에 `Save/seed.jld2`에 저장
-    + `setting.jl` : Telegram bot 연결, seed 구성
-      + `Save/telegram.txt` : Telegram bot token과 id가 엔터로 구분되어 있는 텍스트 파일
+    + `setting.jl` : seed 구성
 
 **Example**
 ```julia
@@ -87,3 +85,13 @@ nohup julia -t 16 big.jl 1>/dev/null 2>&1 &
   + `load_small.ipynb` : Small subset 들을 읽을 수 있는 jupyter notebook
 
 무거운 작업은 서버에서 작업하고, 사용자 친화적이게 간단한 작업은 Interactive한 환경에서 사용자가 인자를 바꾸어가면서 시각화 가능.
+
+- 과도한 RAM 사용으로 프로세스가 killed 되는 현상
+
+`rf_importance`, `get_reg_importance`, `iter_get_reg_importance`에 `memory_usage` 항목을 추가해서 RAM의 사용량을 조절 할 수 있도록 했음.
+
+- Telegram 알림 버그
+
+Big subset을 실행시키는 과정에서 알 수 없는 버그가 Telegram 메세지를 보내는 과정에서 생기는 문제를 확인하였음. 그래서 수시로 MobaXterm을 이용해 접속해서 프로세스를 확인하는 것으로 대체함.  
+
+따라서 7/21 연구노트에서 Telegram을 사용하는 부분을 삭제함.
