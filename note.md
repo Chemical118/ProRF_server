@@ -79,7 +79,7 @@ kill -15 [PID]
 - Big subset 실행
 
 ```
-julia -t 16 big.jl 1>/dev/null 2>&1 &
+nohup julia -t 16 big.jl 1>/dev/null 2>&1 &
 ```
 
 - Big, Small subset을 읽고 보여줄 수 있는 jupyter notebook 제작
