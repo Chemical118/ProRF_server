@@ -1,4 +1,4 @@
-# julia -t 16
+# nohup julia -t 16 big.jl 1>/dev/null 2>&1 &
 # Big dataset
 include("setting.jl") 
 using ProRF, Printf
@@ -6,7 +6,14 @@ function big_dataset(data::Tuple{String, Char, Int, Int, Int})
     dataset, col, feat, tree, mdep = data
     R = RF("Data/" * dataset)
     X, Y, L = get_data(R, col, norm=true)
-    M, F = get_reg_importance(R, X, Y, L, feat, tree, max_depth=mdep, data_state=data_state, learn_state=learn_state, imp_state=imp_state, memory_usage=16, val_mode=true, imp_iter=1)
+
+    M, F = get_reg_importance(R, X, Y, L,
+        feat, tree, max_depth=mdep,
+        data_state=data_state,
+        learn_state=learn_state,
+        imp_state=imp_state,
+        memory_usage=25, val_mode=true)
+
     PY = parallel_predict(M, X)
     @save (@sprintf "Save/big/%s_%c.jld2" dataset col) F Y PY
 end
