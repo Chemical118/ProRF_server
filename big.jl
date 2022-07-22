@@ -4,13 +4,11 @@ include("setting.jl")
 using ProRF, Printf
 function big_dataset(data::Tuple{String, Char, Int, Int, Int})
     dataset, col, feat, tree, mdep = data
-    printm(dataset)
     R = RF("Data/" * dataset)
     X, Y, L = get_data(R, col, norm=true)
-    M, F = get_reg_importance(R, X, Y, L, feat, tree, max_depth=mdep, data_state=data_state, learn_state=learn_state, imp_state=imp_state, val_mode=true, imp_iter=1)
+    M, F = get_reg_importance(R, X, Y, L, feat, tree, max_depth=mdep, data_state=data_state, learn_state=learn_state, imp_state=imp_state, memory_usage=16, val_mode=true, imp_iter=1)
     PY = parallel_predict(M, X)
     @save (@sprintf "Save/big/%s_%c.jld2" dataset col) F Y PY
-    printm(dataset * " end")
 end
 
 
