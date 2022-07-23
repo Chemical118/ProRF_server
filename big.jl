@@ -21,8 +21,8 @@ end
 
 # (Dataset name, excel column, feat, tree, max depth)
 data_vector = Vector{Tuple{String, Char, Int, Int, Int, Int}}([
-    # ("AB", 'B', 6, 1000, 60, 16),
-    # ("avGFP", 'B', 8, 400, 270, 16),
+    ("AB", 'B', 6, 1000, 60, 16),
+    ("avGFP", 'B', 8, 400, 270, 16),
     ("GB1", 'C', 7, 500, 190, 4),
     ("GB1p", 'F', 3, 1400, 14, 16),
     ("gGB1", 'B', 10, 2000, -1, 16),
