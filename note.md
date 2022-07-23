@@ -81,7 +81,8 @@ nohup julia -t 16 big.jl 1>/dev/null 2>&1 &
 ```
 
 - Big, Small subset을 읽고 보여줄 수 있는 jupyter notebook 제작
-  + `load_big.ipynb` : Big subset 들을 읽을 수 있는 jupyter notebook
+  + `load_big.ipynb` : Big subset
+  +  들을 읽을 수 있는 jupyter notebook
   + `load_small.ipynb` : Small subset 들을 읽을 수 있는 jupyter notebook
 
 무거운 작업은 서버에서 작업하고, 사용자 친화적이게 간단한 작업은 Interactive한 환경에서 사용자가 인자를 바꾸어가면서 시각화 가능.
@@ -95,3 +96,8 @@ nohup julia -t 16 big.jl 1>/dev/null 2>&1 &
 Big subset을 실행시키는 과정에서 알 수 없는 버그가 Telegram 메세지를 보내는 과정에서 생기는 문제를 확인하였음. 그래서 수시로 MobaXterm을 이용해 접속해서 프로세스를 확인하는 것으로 대체함.  
 
 따라서 7/21 연구노트에서 Telegram을 사용하는 부분을 삭제함.
+
+## 7/24
+- Big subset RAM 조정
+ShapML을 이용해서 메모리를 사용하는데 특정 dataset에서 과도하게 사용하는 것을 발견해서 RAM 사용량을 조정할 수 있도록 수정했음.  
+사용량 계산 방식을 바꾸든, 조정이 필요할 것 같다.
