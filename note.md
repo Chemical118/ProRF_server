@@ -20,10 +20,8 @@ cd ProRF_server
 
 - julia 모듈 설치
   
-내가 커스텀 한 모듈을 먼저 설치해야함
 ```julia
 using Pkg
-Pkg.add(url="https://github.com/Chemical118/AverageShiftedHistograms.jl")
 Pkg.add(url="https://github.com/Chemical118/ProRF.jl")
 Pkg.add("JLD2")
 ```
