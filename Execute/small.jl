@@ -1,4 +1,4 @@
-# nohup julia -t 3 -p 5 small.jl 1>/dev/null 2>&1 &
+# nohup julia -t 2 -p 6 small.jl 1>/dev/null 2>&1 &
 # Small dataset
 @everywhere include("setting.jl") 
 @everywhere using ProRF, Printf
@@ -12,7 +12,7 @@
         data_state_seed=data_state,
         learn_state_seed=learn_state,
         imp_state=imp_state,
-        memory_usage=25, val_mode=true)
+        memory_usage=16, val_mode=true)
 
     M = rf_model(X, Y, feat, tree,
         data_state=data_state,
@@ -27,6 +27,7 @@ end
 # (Dataset name, excel column, feat, tree, max depth)
 data_vector = Vector{Tuple{String, Char, Int, Int, Int}}([
     ("avGFPs", 'C', 30, 2000, -1),
+    ("avGFPs", 'F', 8, 2000, -1),
     ("eqFP578s", 'C', 12, 2000, -1),
     ("DsReds", 'C', 10, 2000, -1),
     ("RBs", 'B', 5, 2000, -1),
