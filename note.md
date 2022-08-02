@@ -79,8 +79,7 @@ nohup julia -t 16 big.jl 1>/dev/null 2>&1 &
 ```
 
 - Big, Small subset을 읽고 보여줄 수 있는 jupyter notebook 제작
-  + `load_big.ipynb` : Big subset
-  +  들을 읽을 수 있는 jupyter notebook
+  + `load_big.ipynb` : Big subset 들을 읽을 수 있는 jupyter notebook
   + `load_small.ipynb` : Small subset 들을 읽을 수 있는 jupyter notebook
 
 무거운 작업은 서버에서 작업하고, 사용자 친화적이게 간단한 작업은 Interactive한 환경에서 사용자가 인자를 바꾸어가면서 시각화 가능.
