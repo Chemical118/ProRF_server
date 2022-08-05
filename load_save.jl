@@ -2,7 +2,7 @@ using ProRF, Printf, JLD2, Statistics
 
 @load "Save/seed.jld2" data_state learn_state imp_state
 
-function load_big_dataset(dataset_name::String, excel_loc::Char='.')
+function load_big_dataset(dataset_name::String, excel_loc::Char='.'; val_mode::Bool=false)
     data_vector = Vector{Tuple{String, Char, Int, Int, Int}}([
         ("AB", 'B', 6, 1000, 60),
         ("avGFP", 'B', 8, 400, 270),
@@ -32,10 +32,14 @@ function load_big_dataset(dataset_name::String, excel_loc::Char='.')
     R = RF("Data/" * dataset)
     X, Y, L = get_data(R, col, norm=true)
     @load (@sprintf "Save/big/%s_%c.jld2" dataset col) F Y PY
+
+    if val_mode == false
+        @printf "Sample : %d\nVariable : %d\n" size(X)...
+    end
     return R, X, Y, L, F, Y, PY
 end
 
-function load_small_dataset(dataset_name::String, excel_loc::Char='.')
+function load_small_dataset(dataset_name::String, excel_loc::Char='.'; val_mode::Bool=false)
     data_vector = Vector{Tuple{String, Char, Int, Int, Int}}([
         ("avGFPs", 'C', 30, 2000, -1),
         ("avGFPs", 'F', 8, 2000, -1),
@@ -63,6 +67,10 @@ function load_small_dataset(dataset_name::String, excel_loc::Char='.')
     R = RF("Data/" * dataset)
     X, Y, L = get_data(R, col, norm=true)
     @load (@sprintf "Save/small/%s_%c.jld2" dataset col) MZ SZ Y PY
+
+    if val_mode == false
+        @printf "Sample : %d\nVariable : %d\n" size(X)...
+    end
     return R, X, Y, L, MZ, SZ, Y, PY
 end
 
