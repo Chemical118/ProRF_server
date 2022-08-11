@@ -31,10 +31,10 @@ function load_big_dataset(dataset_name::String, excel_loc::Char='.'; val_mode::B
     @printf "Dataset : %s_%c\n" dataset col
     R = RF("Data/" * dataset)
     X, Y, L = get_data(R, col, norm=true)
-    @load (@sprintf "Save/big/%s_%c.jld2" dataset col) F Y PY
+    @load (@sprintf "NSave/big/%s_%c.jld2" dataset col) F Y PY
 
     if val_mode == false
-        @printf "Sample : %d\nVariable : %d\n" size(X)...
+        @printf "Sample : %d\nVariable : %d\n" size(X, 1) length(get_amino_loc(L))
     end
     return R, X, Y, L, F, Y, PY
 end
@@ -66,7 +66,7 @@ function load_small_dataset(dataset_name::String, excel_loc::Char='.'; val_mode:
     @printf "Dataset : %s_%c\n" dataset col
     R = RF("Data/" * dataset)
     X, Y, L = get_data(R, col, norm=true)
-    @load (@sprintf "Save/small/%s_%c.jld2" dataset col) MZ SZ Y PY
+    @load (@sprintf "NSave/small/%s_%c.jld2" dataset col) MZ SZ Y PY
 
     if val_mode == false
         @printf "Sample : %d\nVariable : %d\n" size(X)...
@@ -107,7 +107,7 @@ function load_dataset_model(dataset_name::String, excel_loc::Char='.')
 
     dataset, col, feat, tree, mdep = data_vector[ind]
 
-    return load_model(@sprintf "Model/%s_%c.jld2" dataset col)
+    return load_model(@sprintf "NModel/%s_%c.jld2" dataset col)
 end
 
 function r2(tru::Vector{Float64}, pre::Vector{Float64})
