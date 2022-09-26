@@ -2,8 +2,7 @@
 ## 7/21
 - julia 설치
 ```
-wget https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.3-linux-x86_64.tar.gz
-tar zxvf julia-1.7.3-linux-x86_64.tar.gz
+vs
 ```
 Python 종속성은 julia 내에서 miniconda 설치해서 해결
 - julia 환경 변수 추가
