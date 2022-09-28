@@ -115,8 +115,8 @@ function load_dataset_model(dataset_name::String, excel_loc::Char='.')
     return load_model(@sprintf "NModel/%s_%c.jld2" dataset col)
 end
 
-function test_top5(R::AbstractRF, NL::Vector{String}, F::Vector{Float64})
-    for loc in filter(x -> '*' ∉ x, getindex.(sort(collect(zip(NL, F)), by = x -> x[2], rev=true), 1)[1:5])
+function test_top(R::AbstractRF, NL::Vector{String}, F::Vector{Float64}, cut::Int=5)
+    for loc in filter(x -> '*' ∉ x, getindex.(sort(collect(zip(NL, F)), by = x -> x[2], rev=true), 1)[1:cut])
         @printf "Location : %s\n" loc
         loc_num = parse(Int, loc[1:end-1])
         cdict = [ProRF.volume, ProRF.pI, ProRF.hydrophobicity][only(loc[end]) - 'a' + 1]

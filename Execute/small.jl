@@ -10,7 +10,6 @@
     feat, tree, mdep = get_rf_value(X, Y,
         iter=5,
         memory_usage=16,
-        ba
         val_mode=true)
 
     MZ, SZ = iter_get_reg_importance(R, X, Y, L, 
